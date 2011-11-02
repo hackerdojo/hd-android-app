@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/white"
+    >
+    <ImageView 
+	    android:id="@+id/imageView1" 
+	    android:layout_height="wrap_content" 
+	    android:layout_width="match_parent" 
+	    android:layout_marginTop="10px"
+	    android:src="@drawable/hacker_dojo_logo_transparent" 
+	    />
+	<TextView
+	    android:id="@+id/header"
+	    android:layout_width="fill_parent" 
+	    android:layout_height="wrap_content" 
+	    android:textSize="16pt"
+	    android:gravity="center_vertical|center_horizontal"
+	    />
+	    
+	<ListView 
+		android:id="@android:id/list"
+		android:layout_height="wrap_content"
+	    android:layout_width="wrap_content" 
+	    android:divider="@android:color/darker_gray"
+	    android:dividerHeight="1px"
+	    android:cacheColorHint="#00000000"
+	    />
+	<TextView
+		android:id="@android:id/empty"
+		android:text="@string/emptyEvents"
+		android:layout_height="fill_parent"
+	    android:layout_width="fill_parent" 
+	    android:gravity="center_vertical|center_horizontal"
+	    android:textSize="16pt"
+		/>
+</LinearLayout>
