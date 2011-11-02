@@ -1,7 +1,29 @@
 package com.hackerdojo.android.infoapp;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.StringWriter;
+import java.net.HttpURLConnection;
+import java.util.ArrayList;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BufferedHeader;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.ListActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
@@ -17,11 +39,50 @@ public class HackerDojoActivity extends ListActivity implements OnClickListener 
         TextView header = (TextView) findViewById(R.id.header);
         header.setText("Events");
         
-        String[] s = {"Wednesday: Nov 2, 2011", "6:00 pm - Example Meetup", "6:30 pm - Dojo Hacking", "Friday: Nov 4, 2011", "6:00 pm - Dojo Hour",
-        "Wednesday: Nov 9, 2011", "6:00 pm - Example Meetup", "6:30 pm - Dojo Hacking", "Friday: Nov 11, 2011", "6:00 pm - Dojo Hour",
-        "Wednesday: Nov 16, 2011", "6:00 pm - Example Meetup", "6:30 pm - Dojo Hacking", "Friday: Nov 18, 2011", "6:00 pm - Dojo Hour",
-        "Wednesday: Nov 23, 2011", "6:00 pm - Example Meetup", "6:30 pm - Dojo Hacking", "Friday: Nov 25, 2011", "6:00 pm - Dojo Hour",
-        "Wednesday: Nov 30, 2011", "6:00 pm - Example Meetup", "6:30 pm - Dojo Hacking", "Friday: Dec 2 , 2011", "6:00 pm - Dojo Hour"};
+        HttpClient client = new DefaultHttpClient();
+		StringBuffer sb = new StringBuffer();
+        try {
+        	Log.i("HACKER_DOJO", "FETCHING EVENTS");
+			HttpResponse response = client.execute(new HttpGet("http://events.hackerdojo.com/events.json"));
+			HttpEntity entity = response.getEntity();
+			char[] buf = new char[1024];
+			InputStream content = entity.getContent();
+			BufferedReader reader = new BufferedReader(new InputStreamReader(content));
+			int c=0;
+			while(c != -1) {
+				c = reader.read(buf);
+				if(c > 0) {
+					sb.append(buf, 0, c);
+				}
+			}
+		} catch (ClientProtocolException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        ArrayList<String> events = new ArrayList<String>();
+        try {
+        	JSONArray json = new JSONArray(sb.toString());
+        	for(int i=0; i<json.length(); i++) {
+        		JSONObject jsonObject = json.getJSONObject(i);
+        		String nextEvent = "no time set";
+        		if(jsonObject.has("start_time")) {
+        			nextEvent = jsonObject.getString("start_time");
+        		}
+        		if(jsonObject.has("name")) {
+        			events.add(nextEvent + " - " + jsonObject.getString("name"));
+        		}
+        	}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        String[] s = new String[events.size()];
+        for(int i=0; i<events.size(); i++) {
+        	s[i] = events.get(i);
+        }
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.entry, s);
         setListAdapter(adapter);
     }
