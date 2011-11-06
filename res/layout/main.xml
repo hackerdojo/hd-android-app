@@ -18,15 +18,17 @@
 	    android:layout_height="wrap_content" 
 	    android:textSize="16pt"
 	    android:gravity="center_vertical|center_horizontal"
+	    android:visibility="visible"
 	    />
 	    
 	<ListView 
 		android:id="@android:id/list"
-		android:layout_height="wrap_content"
-	    android:layout_width="wrap_content" 
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content" 
 	    android:divider="@android:color/darker_gray"
 	    android:dividerHeight="1px"
 	    android:cacheColorHint="#00000000"
+	    android:layout_weight="1"
 	    />
 	<TextView
 		android:id="@android:id/empty"
@@ -35,5 +37,25 @@
 	    android:layout_width="fill_parent" 
 	    android:gravity="center_vertical|center_horizontal"
 	    android:textSize="16pt"
+	    android:layout_weight="1"
 		/>
+	<LinearLayout 
+	    android:layout_width="fill_parent" 
+	    android:layout_height="wrap_content" 
+	    android:layout_weight="0"
+		>
+		<Button 
+		    android:layout_width="fill_parent" 
+		    android:layout_height="wrap_content" 
+		    android:text="Staff on Site"
+		    android:layout_weight="2"
+			/>
+		<Button 
+		    android:layout_width="fill_parent" 
+		    android:layout_height="wrap_content" 
+		    android:text="Find the Dojo"
+		    android:layout_weight="2"
+			/>
+	
+	</LinearLayout>
 </LinearLayout>
