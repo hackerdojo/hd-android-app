@@ -2,5 +2,5 @@
 <resources>
     <string name="hello">Hello World, HackerDojoActivity!</string>
     <string name="app_name">Hacker Dojo</string>
-    <string name="emptyEvents">No events scheduled</string>
+    <string name="emptyEvents"></string>
 </resources>
