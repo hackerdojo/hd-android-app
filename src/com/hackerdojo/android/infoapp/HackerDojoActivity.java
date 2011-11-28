@@ -4,6 +4,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 import android.app.ListActivity;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.view.Surface;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.Toast;
 
 public abstract class HackerDojoActivity extends ListActivity implements
 		OnClickListener {
@@ -81,6 +83,10 @@ public abstract class HackerDojoActivity extends ListActivity implements
 		Intent intent = new Intent(
 				Intent.ACTION_VIEW,
 				Uri.parse("google.navigation:q=140%20whisman%20rd%2C%20mountain%20view%2C%20ca"));
-		startActivity(intent);
+		try {
+			startActivity(intent);
+		} catch(ActivityNotFoundException ex) {
+			Toast.makeText(this, "No navigation app detected", Toast.LENGTH_SHORT).show();
+		}
 	}
 }
