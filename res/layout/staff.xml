@@ -7,7 +7,7 @@
 	>
     <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/linearLayout1" android:orientation="horizontal" android:gravity="center_vertical">
 	    <TextView android:id="@+id/textView1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#005500" android:visibility="gone"></TextView>
-	    <TextView android:id="@+id/textView2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#990000" ></TextView>
+	    <TextView android:id="@+id/textView2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#005500" ></TextView>
     </LinearLayout>
     <TextView android:id="@+id/textView3" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="@android:color/black" android:layout_gravity="center_vertical|right" android:layout_marginLeft="10px"></TextView>
 </LinearLayout>
