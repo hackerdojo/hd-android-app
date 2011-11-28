@@ -8,6 +8,7 @@ public class Event implements Comparable<Event> {
 	private String title;
 	private String host;
 	private String location;
+	private int size;
 	public Date getStartDate() {
 		return startDate;
 	}
@@ -47,5 +48,11 @@ public class Event implements Comparable<Event> {
 			comp = this.title.compareTo(anotherEvent.title);
 		}
 		return comp;
+	}
+	public int getSize() {
+		return size;
+	}
+	public void setSize(int size) {
+		this.size = size;
 	}
 }
