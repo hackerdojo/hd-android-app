@@ -46,6 +46,7 @@ public class StaffActivity extends HackerDojoActivity implements
 		super.onCreate(savedInstanceState);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void onResume() {
 		super.onResume();
@@ -109,6 +110,7 @@ public class StaffActivity extends HackerDojoActivity implements
 			return staff;
 		}
 
+		@SuppressWarnings("unchecked")
 		public void onPostExecute(List<Person> staff) {
 			StaffActivity.staff.set(staff);
 			new UpdateStaffView(activity).execute(StaffActivity.staff.get());

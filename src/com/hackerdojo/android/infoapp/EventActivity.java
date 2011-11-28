@@ -27,7 +27,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class EventActivity extends HackerDojoActivity implements
 		OnClickListener {
@@ -55,6 +54,7 @@ public class EventActivity extends HackerDojoActivity implements
 		super.onCreate(savedInstanceState);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void onResume() {
 		super.onResume();
