@@ -3,6 +3,7 @@ package com.hackerdojo.android.infoapp;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
@@ -86,7 +87,15 @@ public abstract class HackerDojoActivity extends ListActivity implements
 		try {
 			startActivity(intent);
 		} catch(ActivityNotFoundException ex) {
-			Toast.makeText(this, "No navigation app detected", Toast.LENGTH_SHORT).show();
+			AlertDialog.Builder builder = new AlertDialog.Builder(
+					this);
+			builder.setCancelable(true);
+			builder.setTitle("Hacker Dojo");
+			String message = 
+					"140A South Whisman Road\n" +
+					"Mountain View, CA 94041";
+			builder.setMessage(message);
+			builder.create().show();
 		}
 	}
 }
