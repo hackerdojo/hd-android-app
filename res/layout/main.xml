@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/mainLayout"
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
@@ -9,16 +10,8 @@
 	    android:id="@+id/imageView1" 
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content" 
-	    android:layout_marginTop="10px"
+	    android:layout_margin="10px"
 	    android:src="@drawable/hacker_dojo_logo_transparent" 
-	    />
-	<TextView
-	    android:id="@+id/header"
-	    android:layout_width="fill_parent" 
-	    android:layout_height="wrap_content" 
-	    android:textSize="16pt"
-	    android:gravity="center_vertical|center_horizontal"
-	    android:visibility="visible"
 	    />
 	    
 	<ListView 
