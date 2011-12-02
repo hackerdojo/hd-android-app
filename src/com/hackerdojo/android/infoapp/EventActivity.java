@@ -155,7 +155,7 @@ public class EventActivity extends HackerDojoActivity implements
 
 		@Override
 		public void onPostExecute(List<Event> events) {
-			Log.e(HackerDojoActivity.TAG, "event size: " + events.size());
+			Log.i(HackerDojoActivity.TAG, "event size: " + events.size());
 			Calendar lastUpdated = Calendar.getInstance();
 
 			ArrayList<String> startDates = new ArrayList<String>();
