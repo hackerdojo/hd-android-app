@@ -91,7 +91,7 @@ public class StaffActivity extends HackerDojoActivity implements
 	    				SimpleDateFormat format = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss");
 	    				
 	        			String name = jsonObject.getString("name");
-	        			Log.e(TAG, "created: " + jsonObject.getString("created"));
+	        			Log.v(TAG, "created: " + jsonObject.getString("created"));
 	    				Date created = format.parse(jsonObject.getString("created")); // hardcode date for parsing
 	        			String imageUrl = jsonObject.getString("image_url");
 	        			
@@ -128,7 +128,7 @@ public class StaffActivity extends HackerDojoActivity implements
 		}
 		
 		public void onPostExecute(List<Person> staff) {
-			Log.e(HackerDojoActivity.TAG, "staff size: " + staff.size());
+			Log.i(HackerDojoActivity.TAG, "staff size: " + staff.size());
 			
 	        Calendar lastUpdated = Calendar.getInstance();
 	        
