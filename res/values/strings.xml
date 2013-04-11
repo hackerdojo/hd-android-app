@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="hello">Hello World, HackerDojoActivity!</string>
     <string name="app_name">Hacker Dojo</string>
     <string name="emptyEvents"></string>
+    <string name="title_activity_sub_event">SubEventActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_sub_events">SubEventsActivity</string>
+    <string name="title_activity_sub">SubActivity</string>
+
 </resources>

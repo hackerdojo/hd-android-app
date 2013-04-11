@@ -1,22 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-      package="com.hackerdojo.android.infoapp"
-      android:versionCode="1" android:versionName="1.0.0">
-    <uses-sdk android:minSdkVersion="3" />
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    package="com.hackerdojo.android.infoapp"
+    android:versionCode="1"
+    android:versionName="1.0.0" >
 
-    <application android:icon="@drawable/icon" android:label="@string/app_name">
-        <activity android:name=".EventActivity"
-                  android:label="@string/app_name"
-                  android:theme="@android:style/Theme.NoTitleBar"
-                  > 
+    <uses-sdk android:minSdkVersion="3" />
+
+    <uses-permission android:name="android.permission.INTERNET" >
+    </uses-permission>
+
+    <application
+        android:icon="@drawable/icon"
+        android:label="@string/app_name" >
+        <activity
+            android:name="com.hackerdojo.android.infoapp.EventActivity"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.NoTitleBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".StaffActivity" 
-				  android:theme="@android:style/Theme.NoTitleBar"
-        		  />
+        <activity
+            android:name="com.hackerdojo.android.infoapp.StaffActivity"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name="com.hackerdojo.android.infoapp.SubEventActivity"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:label="@string/title_activity_sub_event" >
+        </activity>
+
     </application>
+
 </manifest>

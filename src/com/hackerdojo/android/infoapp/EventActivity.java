@@ -15,10 +15,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -44,6 +49,10 @@ public class EventActivity extends HackerDojoActivity implements
 		cal.setTime(new Date(0));
 		lastChecked.set(cal);
 	}
+	
+	static String message;
+	static Event event;
+	
 
 	@Override
 	public void onStart() {
@@ -114,6 +123,7 @@ public class EventActivity extends HackerDojoActivity implements
 							event.setStartDate(startDate);
 							event.setEndDate(endDate);
 							event.setTitle(jsonObject.getString("name"));
+
 							event.setLocation(jsonObject.getString("rooms"));
 							event.setHost(jsonObject.getString("member"));
 							if(jsonObject.has("estimated_size")) {
@@ -233,23 +243,35 @@ public class EventActivity extends HackerDojoActivity implements
 				public void onItemClick(AdapterView<?> parent, View view,
 						int position, long id) {
 					Map<Integer, Event> map = EventActivity.eventIndexes.get();
+					
 					if(map.containsKey(position)) {
-						Event event = map.get(position);
-						AlertDialog.Builder builder = new AlertDialog.Builder(
-								activity);
+						
+						event = map.get(position);						
+						AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 						builder.setCancelable(true);
 						builder.setTitle(event.getTitle());
-						String message = String.format(
-								"Starts:\n%s\n\nEnds:\n%s\n\nat:\n%s\n\nhosted by:\n%s",
+						
+						String formatted_location = event.getLocation();
+						formatted_location = formatted_location.replace("[", "");
+						formatted_location = formatted_location.replace("]", "");
+						
+						message = String.format(
+								"Starts:\n%s\n\nEnds:\n%s\n\nLocated at:\n%s\n\nHosted by:\n%s",
 								event.getStartDate(), event.getEndDate(),
-								event.getLocation(), event.getHost());
+								formatted_location, event.getHost());
+						
 						if(event.getSize() > 0) {
 							message = message + "\n\nestimated size:\n" + event.getSize();
 						}
-						builder.setMessage(message);
-						builder.create().show();
+						
+						//Add calendar event and different View
+												
+						Intent SubEventIntent = new Intent(EventActivity.this, SubEventActivity.class);
+						startActivity(SubEventIntent);
 					}
 				}
+				
+
 
 			});
 

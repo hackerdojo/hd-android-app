@@ -159,6 +159,9 @@ public class StaffActivity extends HackerDojoActivity implements
 	        	long days = timeRadix;
 	        	
 	        	StringBuffer time = new StringBuffer();
+	        	
+	        	time.append("Arrived ");
+	        	
 	        	if(days > 0) {
 	        		time.append(days + " days ");
 	        	}
@@ -166,7 +169,7 @@ public class StaffActivity extends HackerDojoActivity implements
 	        		time.append(hours + " hours ");
 	        	}
 	        	if(days > 0 || hours > 0 || minutes > 0) {
-	        		time.append(minutes + " minutes");
+	        		time.append(minutes + " minutes ago");
 	        	}
 	        	names.add(person.getName());
 	        	timeHere.add(time.toString());
