@@ -64,7 +64,7 @@
 			android:id="@+id/navigateButton"
 		    android:layout_width="fill_parent" 
 		    android:layout_height="wrap_content" 
-		    android:text="Find the Dojo"
+		    android:text="Navigate to the Dojo"
 		    android:layout_weight="2"
 			/>
 	</LinearLayout>

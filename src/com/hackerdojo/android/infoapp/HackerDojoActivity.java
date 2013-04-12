@@ -83,7 +83,7 @@ public abstract class HackerDojoActivity extends ListActivity implements
 	private void openNavigation() {
 		Intent intent = new Intent(
 				Intent.ACTION_VIEW,
-				Uri.parse("google.navigation:q=140%20whisman%20rd%2C%20mountain%20view%2C%20ca"));
+				Uri.parse("google.navigation:q=599%20Fairchild%20Dr%2C%20Mountain%20View%2C%20ca"));
 		try {
 			startActivity(intent);
 		} catch(ActivityNotFoundException ex) {
@@ -92,7 +92,7 @@ public abstract class HackerDojoActivity extends ListActivity implements
 			builder.setCancelable(true);
 			builder.setTitle("Hacker Dojo");
 			String message = 
-					"140A South Whisman Road\n" +
+					"599 Fairchild Dr\n" +
 					"Mountain View, CA 94041";
 			builder.setMessage(message);
 			builder.create().show();
