@@ -16,21 +16,24 @@
             android:name="com.hackerdojo.android.infoapp.EventActivity"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.NoTitleBar" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name="com.hackerdojo.android.infoapp.StaffActivity"
             android:theme="@android:style/Theme.NoTitleBar" />
         <activity
             android:name="com.hackerdojo.android.infoapp.SubEventActivity"
-            android:theme="@android:style/Theme.NoTitleBar"
-            android:label="@string/title_activity_sub_event" >
+            android:label="@string/title_activity_sub_event"
+            android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
+        <activity
+            android:name="com.hackerdojo.android.infoapp.HelloGridView"
+            android:theme="@android:style/Theme.NoTitleBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

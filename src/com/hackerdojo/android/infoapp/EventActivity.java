@@ -68,8 +68,8 @@ public class EventActivity extends HackerDojoActivity implements
 	public void onResume() {
 		super.onResume();
 
-		Button eventButton = (Button) findViewById(R.id.eventsButton);
-		eventButton.setVisibility(View.GONE);
+		//Button eventButton = (Button) findViewById(R.id.eventsButton);
+		//eventButton.setVisibility(View.GONE);
 
 		if (Calendar.getInstance().getTimeInMillis()
 				- lastChecked.get().getTimeInMillis() > (1000 * 60 * 10)) { // 10

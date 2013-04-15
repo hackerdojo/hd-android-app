@@ -51,8 +51,8 @@ public class StaffActivity extends HackerDojoActivity implements
 	public void onResume() {
 		super.onResume();
 
-		Button staffButton = (Button) findViewById(R.id.staffButton);
-		staffButton.setVisibility(View.GONE);
+//		Button staffButton = (Button) findViewById(R.id.staffButton);
+//		staffButton.setVisibility(View.GONE);
 		
 		// strange bug, events properly maintains state but staff doesn't
 

@@ -8,10 +8,12 @@ public class Event implements Comparable<Event> {
 	private String title;
 	private String host;
 	private String location;
+	private String description; //add extended description for SubEvent Activity...
 	private int size;
 	public Date getStartDate() {
 		return startDate;
 	}
+	
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
@@ -38,6 +40,14 @@ public class Event implements Comparable<Event> {
 	}
 	public void setLocation(String location) {
 		this.location = location;
+	}
+	
+	public String getDescription(){
+		return description;
+	}
+	
+	public void setDescription(String description){
+		this.description = description;
 	}
 	
 	@Override

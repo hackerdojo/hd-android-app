@@ -9,5 +9,8 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_sub_events">SubEventsActivity</string>
     <string name="title_activity_sub">SubActivity</string>
+    <string name="navigate_button_label">Navigate to the Dojo!</string>
+    <string name="staff_button_label">Staff on Site</string>
+    <string name="event_button_label">Events</string>
 
 </resources>

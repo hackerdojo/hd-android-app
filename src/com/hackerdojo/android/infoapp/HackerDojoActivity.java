@@ -33,14 +33,14 @@ public abstract class HackerDojoActivity extends ListActivity implements
 	public void onResume() {
 		super.onResume();
 
-		Button eventsButton = (Button) findViewById(R.id.eventsButton);
-		eventsButton.setOnClickListener(this);
-
-		Button staffButton = (Button) findViewById(R.id.staffButton);
-		staffButton.setOnClickListener(this);
-
-		Button navigateButton = (Button) findViewById(R.id.navigateButton);
-		navigateButton.setOnClickListener(this);
+//		Button eventsButton = (Button) findViewById(R.id.eventsButton);
+//		eventsButton.setOnClickListener(this);
+//
+//		Button staffButton = (Button) findViewById(R.id.staffButton);
+//		staffButton.setOnClickListener(this);
+//
+//		Button navigateButton = (Button) findViewById(R.id.navigateButton);
+//		navigateButton.setOnClickListener(this);
 		
 		// hide dojo logo when sideways, takes up a lot of room
 		View dojoLogo = findViewById(R.id.imageView1);
@@ -56,15 +56,15 @@ public abstract class HackerDojoActivity extends ListActivity implements
 	public void onClick(View v) {
 		Log.i(TAG, "Button Click: " + v.getId());
 		switch (v.getId()) {
-		case R.id.eventsButton:
-			openEvents();
-			break;
-		case R.id.staffButton:
-			openStaff();
-			break;
-		case R.id.navigateButton:
-			openNavigation();
-			break;
+//		case R.id.eventsButton:
+//			openEvents();
+//			break;
+//		case R.id.staffButton:
+//			openStaff();
+//			break;
+//		case R.id.navigateButton:
+//			openNavigation();
+//			break;
 		default:
 
 		}
