@@ -7,9 +7,10 @@
 
     <ImageView
         android:id="@+id/top_image"
-        android:src="@drawable/hacker_dojo_logo_transparent_2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        android:src="@drawable/hacker_dojo_logo_transparent_2" />
 
     <GridView
         android:id="@+id/gridview"

@@ -26,7 +26,7 @@
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
-            android:name="com.hackerdojo.android.infoapp.HelloGridView"
+            android:name="com.hackerdojo.android.infoapp.HackerDojoActivity2"
             android:theme="@android:style/Theme.NoTitleBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

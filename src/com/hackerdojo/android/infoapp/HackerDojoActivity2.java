@@ -16,7 +16,7 @@ import android.widget.GridView;
 import android.widget.Toast;
 
 
-public class HelloGridView extends Activity {
+public class HackerDojoActivity2 extends Activity {
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,12 +55,12 @@ public class HelloGridView extends Activity {
     
     
 	private void openEvents() {
-		Intent intent = new Intent(HelloGridView.this, EventActivity.class);
+		Intent intent = new Intent(HackerDojoActivity2.this, EventActivity.class);
 		startActivity(intent);
 	}
 
 	private void openStaff() {
-		Intent intent = new Intent(HelloGridView.this, StaffActivity.class);
+		Intent intent = new Intent(HackerDojoActivity2.this, StaffActivity.class);
 		startActivity(intent);
 	}
 
