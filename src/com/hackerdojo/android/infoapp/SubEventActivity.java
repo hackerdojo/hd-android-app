@@ -2,6 +2,10 @@ package com.hackerdojo.android.infoapp;
 
 import java.util.Calendar;
 
+import com.hackerdojo.android.infoapp.R;
+import com.hackerdojo.android.infoapp.R.id;
+import com.hackerdojo.android.infoapp.R.layout;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;

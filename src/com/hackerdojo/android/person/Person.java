@@ -1,4 +1,4 @@
-package com.hackerdojo.android.infoapp;
+package com.hackerdojo.android.person;
 
 import java.util.Date;
 

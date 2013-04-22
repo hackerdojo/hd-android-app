@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical" >
+    
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        android:src="@drawable/hacker_dojo_logo_transparent_2" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/staff_button"
+            android:text="Staff"
+            android:layout_width="160dp"
+            android:layout_height="match_parent"
+             />
+
+        <Button
+            android:id="@+id/member_button"
+            android:text="Members"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+"
+</LinearLayout>
+
+"
+
+</LinearLayout>

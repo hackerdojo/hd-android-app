@@ -1,4 +1,4 @@
-package com.hackerdojo.android.infoapp;
+package com.hackerdojo.android.person;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -13,6 +13,11 @@ import java.util.concurrent.atomic.AtomicReference;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import com.hackerdojo.android.infoapp.HackerDojoActivity;
+import com.hackerdojo.android.infoapp.JsonUpdateTask;
+import com.hackerdojo.android.infoapp.R;
+import com.hackerdojo.android.infoapp.R.id;
 
 import android.app.Activity;
 import android.os.AsyncTask;

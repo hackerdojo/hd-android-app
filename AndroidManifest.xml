@@ -18,13 +18,21 @@
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
-            android:name="com.hackerdojo.android.infoapp.StaffActivity"
+            android:name="com.hackerdojo.android.person.StaffActivity"
             android:theme="@android:style/Theme.NoTitleBar" />
         <activity
             android:name="com.hackerdojo.android.infoapp.SubEventActivity"
             android:label="@string/title_activity_sub_event"
             android:theme="@android:style/Theme.NoTitleBar" >
+          
         </activity>
+        
+                <activity
+            android:name="com.hackerdojo.android.person.PersonCategoryActivity"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        
+        
+        
         <activity
             android:name="com.hackerdojo.android.infoapp.HackerDojoActivity2"
             android:theme="@android:style/Theme.NoTitleBar" >
@@ -33,6 +41,14 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.hackerdojo.android.person.PersonActivity"
+            android:label="@string/title_activity_person"
+            android:theme="@android:style/Theme.NoTitleBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.hackerdojo.android.infoapp.HackerDojoActivity2" />
         </activity>
     </application>
 

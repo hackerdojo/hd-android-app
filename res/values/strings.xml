@@ -12,5 +12,6 @@
     <string name="navigate_button_label">Navigate to the Dojo!</string>
     <string name="staff_button_label">Staff on Site</string>
     <string name="event_button_label">Events</string>
+    <string name="title_activity_person">PersonActivity</string>
 
 </resources>

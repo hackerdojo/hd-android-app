@@ -15,6 +15,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -50,8 +51,8 @@ public class EventActivity extends HackerDojoActivity implements
 		lastChecked.set(cal);
 	}
 	
-	static String message;
-	static Event event;
+	public static String message;
+	public static Event event;
 	
 
 	@Override

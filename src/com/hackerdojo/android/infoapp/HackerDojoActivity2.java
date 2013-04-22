@@ -1,5 +1,9 @@
 package com.hackerdojo.android.infoapp;
 
+import com.hackerdojo.android.person.PersonActivity;
+import com.hackerdojo.android.person.PersonCategoryActivity;
+import com.hackerdojo.android.person.StaffActivity;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
@@ -28,6 +32,11 @@ public class HackerDojoActivity2 extends Activity {
         
         GridView gridview = (GridView) findViewById(R.id.gridview);
         gridview.setAdapter(new ImageAdapter(this));
+        //gridview.setSelector(android.R.color.transparent);
+        
+        /*Sorry about this!! Will work on getting it to be less confusing... This works in conjunction with
+         * the maingrid.xml and ImageAdapter files to display the homescreen...
+         */
         
         gridview.setOnItemClickListener(new OnItemClickListener()
         {
@@ -38,11 +47,14 @@ public class HackerDojoActivity2 extends Activity {
         		case 0: //Event
         			openEvents();
         			break;
-        		case 1: //Staff Clock In
-        			openStaff();
+        		case 1: //Person
+        			openPerson();
         			break;
         		case 2: //Navigate 
         			openNavigation();
+        			break;
+        		case 3: //Purchase Swag
+        			openSwag();
         			break;
         			       		
         		}
@@ -53,16 +65,25 @@ public class HackerDojoActivity2 extends Activity {
         );
     }
     
+    private void openSwag(){
+    	Intent intent = new Intent(
+    			Intent.ACTION_VIEW,
+    			Uri.parse("http://www.hackerdojo.com/Swag")
+    			);
+    	startActivity(intent);
+    }
+    
+    private void openPerson(){
+    	Intent intent = new Intent(HackerDojoActivity2.this, PersonCategoryActivity.class);
+    	startActivity(intent);
+    }
     
 	private void openEvents() {
 		Intent intent = new Intent(HackerDojoActivity2.this, EventActivity.class);
 		startActivity(intent);
 	}
 
-	private void openStaff() {
-		Intent intent = new Intent(HackerDojoActivity2.this, StaffActivity.class);
-		startActivity(intent);
-	}
+
 
 	private void openNavigation() {
 		Intent intent = new Intent(
