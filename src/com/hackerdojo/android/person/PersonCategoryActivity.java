@@ -1,6 +1,6 @@
 package com.hackerdojo.android.person;
 
-import com.hackerdojo.android.infoapp.HackerDojoActivity2;
+import com.hackerdojo.android.infoapp.HackerDojoActivity3;
 import com.hackerdojo.android.infoapp.R;
 
 import android.app.Activity;
