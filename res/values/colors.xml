@@ -2,4 +2,6 @@
 <resources>
     <color name="red">#ffff0000</color>
     <color name="hacker_red">#ffbd1b2b</color>
+    <color name="google_now_grey">#ffe5e5e5</color>
+    <color name="google_now_shadow">#ffd4d4d4</color>
 </resources>

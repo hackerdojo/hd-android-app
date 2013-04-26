@@ -27,7 +27,7 @@ public class HackerDojoActivity3 extends Activity {
 
 	public class MyAdapter extends BaseAdapter {
 
-		final int NumberOfItem = 4;
+		final int NumberOfItem = 5;
 		private Bitmap[] bitmap = new Bitmap[NumberOfItem];
 
 		private Context context;
@@ -89,7 +89,7 @@ public class HackerDojoActivity3 extends Activity {
 			R.drawable.person_with_border, //1
 			R.drawable.nav_arrow_with_border, //2
 			R.drawable.money_bag_with_border, //3
-			/*R.drawable.theme,*/
+			R.drawable.theme_with_border,//4
 	};
 
 	private String[] StringIds = {
@@ -97,7 +97,7 @@ public class HackerDojoActivity3 extends Activity {
 			"People",
 			"Navigate",
 			"Purchase Swag",
-			/*"Change Theme",*/
+			"Change Theme",
 	};
 
 
