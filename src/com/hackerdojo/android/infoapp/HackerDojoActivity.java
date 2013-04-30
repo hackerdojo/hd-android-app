@@ -3,6 +3,7 @@ package com.hackerdojo.android.infoapp;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+import com.hackerdojo.android.event.EventActivity;
 import com.hackerdojo.android.person.StaffActivity;
 
 import android.app.AlertDialog;

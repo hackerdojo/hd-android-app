@@ -16,11 +16,14 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import android.os.AsyncTask;
 import android.util.Log;
 
-public abstract class JsonUpdateTask<T> extends AsyncTask<String, Long, List<T>> {
-	public String fetchFromUrl(String url) {
+public abstract class JsonUpdateTask<T> extends AsyncTask<String, Long, List<T>> 
+{
+	public String fetchFromUrl(String url) 
+	{		
         HttpClient client = new DefaultHttpClient();
         StringBuffer sb = new StringBuffer();
-        try {
+        try 
+        {
             Log.i(HackerDojoActivity.TAG, "FETCHING: " + url);
             HttpResponse response = client.execute(new HttpGet(url));
             HttpEntity entity = response.getEntity();
@@ -28,9 +31,11 @@ public abstract class JsonUpdateTask<T> extends AsyncTask<String, Long, List<T>>
             InputStream content = entity.getContent();
             BufferedReader reader = new BufferedReader(new InputStreamReader(content));
             int c=0;
-            while(c != -1) {
+            while(c != -1) 
+            {
                 c = reader.read(buf);
-                if(c > 0) {
+                if(c > 0) 
+                {
                     sb.append(buf, 0, c);
                 }
             }
@@ -43,7 +48,8 @@ public abstract class JsonUpdateTask<T> extends AsyncTask<String, Long, List<T>>
 	}
 
 	@Override
-	protected List<T> doInBackground(String... params) {
+	protected List<T> doInBackground(String... params) 
+	{
 		return transform(fetchFromUrl(params[0]));
 	}
 

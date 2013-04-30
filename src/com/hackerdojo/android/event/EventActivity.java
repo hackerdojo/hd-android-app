@@ -1,4 +1,4 @@
-package com.hackerdojo.android.infoapp;
+package com.hackerdojo.android.event;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -14,6 +14,11 @@ import java.util.concurrent.atomic.AtomicReference;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import com.hackerdojo.android.infoapp.HackerDojoActivity;
+import com.hackerdojo.android.infoapp.JsonUpdateTask;
+import com.hackerdojo.android.infoapp.R;
+import com.hackerdojo.android.infoapp.R.id;
 
 
 import android.annotation.SuppressLint;
@@ -34,10 +39,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class EventActivity extends HackerDojoActivity implements
-		OnClickListener {
-
-	private final static String eventsUrl = "http://events.hackerdojo.com/events.json";
+public class EventActivity extends HackerDojoActivity implements OnClickListener 
+{
 
 	private final static AtomicReference<List<Event>> events = new AtomicReference<List<Event>>(
 			new ArrayList<Event>());
@@ -45,54 +48,62 @@ public class EventActivity extends HackerDojoActivity implements
 			new HashMap<Integer, Event>());
 
 	private final static AtomicReference<Calendar> lastChecked = new AtomicReference<Calendar>();
-	static {
+	static 
+	{
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(new Date(0));
 		lastChecked.set(cal);
 	}
-	
+
 	public static String message;
 	public static Event event;
-	
+
 
 	@Override
-	public void onStart() {
+	public void onStart() 
+	{
 		super.onStart();
 	}
 
-	public void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) 
+	{
 		super.onCreate(savedInstanceState);
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public void onResume() {
+	public void onResume() 
+	{
 		super.onResume();
 
 		//Button eventButton = (Button) findViewById(R.id.eventsButton);
 		//eventButton.setVisibility(View.GONE);
 
-		if (Calendar.getInstance().getTimeInMillis()
-				- lastChecked.get().getTimeInMillis() > (1000 * 60 * 10)) { // 10
-																			// minutes
-			new UpdateEventsTask(this).execute(eventsUrl);
+		if (Calendar.getInstance().getTimeInMillis() - lastChecked.get().getTimeInMillis() > (1000 * 60 * 10)) //10 minutes
+		{
+			new UpdateEventsTask(this).execute("http://events.hackerdojo.com/events.json");
 			TextView emptyText = (TextView) findViewById(R.id.empty);
 			emptyText.setText("Loading...");
 			emptyText.setVisibility(View.VISIBLE);
-		} else {
+		}
+		else 
+		{
 			new UpdateEventsView(this).execute(EventActivity.events.get());
 		}
 	}
 
 	@Override
-	public void onClick(View v) {
+	public void onClick(View v) 
+	{
 		super.onClick(v);
 	}
 
-	private class UpdateEventsTask extends JsonUpdateTask<Event> {
+	private class UpdateEventsTask extends JsonUpdateTask<Event> 
+	{
 		private Activity activity;
 
-		public UpdateEventsTask(Activity activity) {
+		public UpdateEventsTask(Activity activity) 
+		{
 			this.activity = activity;
 		}
 
@@ -102,9 +113,11 @@ public class EventActivity extends HackerDojoActivity implements
 				return new ArrayList<Event>();
 			}
 			ArrayList<Event> events = new ArrayList<Event>();
-			try {
+			try 
+			{
 				JSONArray json = new JSONArray(string);
-				for (int i = 0; i < json.length(); i++) {
+				for (int i = 0; i < json.length(); i++) 
+				{
 					Event event = new Event();
 					JSONObject jsonObject = json.getJSONObject(i);
 					if (jsonObject.has("status")
@@ -112,31 +125,35 @@ public class EventActivity extends HackerDojoActivity implements
 							&& jsonObject.has("end_time")
 							&& jsonObject.has("name")
 							&& jsonObject.has("member")
-							&& jsonObject.has("rooms")) {
-						if (jsonObject.getString("status").equals("approved")) {
-							SimpleDateFormat format = new SimpleDateFormat(
-									"yyyy-MM-dd'T'HH:mm:ss");
-							Date startDate = format.parse(jsonObject
-									.getString("start_time")); // hardcode date
-																// for parsing
-							Date endDate = format.parse(jsonObject
-									.getString("end_time"));
+							&& jsonObject.has("rooms")
+							&& jsonObject.has("id")) 
+					{
+						if (jsonObject.getString("status").equals("approved")) 
+						{
+							SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+							Date startDate = format.parse(jsonObject.getString("start_time")); // hardcode date for parsing
+							Date endDate = format.parse(jsonObject.getString("end_time"));
 							event.setStartDate(startDate);
 							event.setEndDate(endDate);
 							event.setTitle(jsonObject.getString("name"));
-
 							event.setLocation(jsonObject.getString("rooms"));
 							event.setHost(jsonObject.getString("member"));
-							if(jsonObject.has("estimated_size")) {
+							event.setId(jsonObject.getInt("id"));
+							if(jsonObject.has("estimated_size")) 
+							{
 								event.setSize(jsonObject.getInt("estimated_size"));
 							}
-							events.add(event);
+							events.add(event);														
 						}
 					}
 				}
-			} catch (JSONException e) {
+			} 
+			catch (JSONException e) 
+			{
 				Log.e(HackerDojoActivity.TAG, e.getMessage(), e);
-			} catch (ParseException e) {
+			} 
+			catch (ParseException e) 
+			{
 				Log.e(HackerDojoActivity.TAG, e.getMessage(), e);
 			}
 			Collections.sort(events);
@@ -144,28 +161,94 @@ public class EventActivity extends HackerDojoActivity implements
 		}
 
 		@SuppressWarnings("unchecked")
-		public void onPostExecute(List<Event> events) {
+		public void onPostExecute(List<Event> events) 
+		{
 			EventActivity.events.set(events);
 			new UpdateEventsView(activity).execute(EventActivity.events.get());
 		}
 	}
 
-	private class UpdateEventsView extends
-			AsyncTask<List<Event>, Void, List<Event>> {
+
+	private class UpdateSpecificEventTask extends JsonUpdateTask<Event> 
+	{
+		@Override
+		public List<Event> transform(String string) {
+			if (string == null || string.trim().length() == 0) {
+				return new ArrayList<Event>();
+			}
+			ArrayList<Event> events = new ArrayList<Event>();
+			try 
+			{
+				JSONArray json = new JSONArray(string);
+				for (int i = 0; i < json.length(); i++) 
+				{
+					Event event = new Event();
+					JSONObject jsonObject = json.getJSONObject(i);
+					if (		jsonObject.has("status")
+							&& jsonObject.has("start_time")
+							&& jsonObject.has("end_time")
+							&& jsonObject.has("name")
+							&& jsonObject.has("member")
+							&& jsonObject.has("rooms")
+							&& jsonObject.has("id")) 
+					{
+						if (jsonObject.getString("status").equals("approved")) 
+						{
+							SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+							Date startDate = format.parse(jsonObject.getString("start_time")); // hardcode date for parsing
+							Date endDate = format.parse(jsonObject.getString("end_time"));
+							event.setStartDate(startDate);
+							event.setEndDate(endDate);
+							event.setTitle(jsonObject.getString("name"));
+
+							event.setLocation(jsonObject.getString("rooms"));
+							event.setHost(jsonObject.getString("member"));
+							event.setId(jsonObject.getInt("id"));
+							if(jsonObject.has("estimated_size")) 
+							{
+								event.setSize(jsonObject.getInt("estimated_size"));
+							}
+							events.add(event);														
+						}
+					}
+				}
+			} 
+			catch (JSONException e) 
+			{
+				Log.e(HackerDojoActivity.TAG, e.getMessage(), e);
+			}
+			catch (ParseException e) 
+			{
+				Log.e(HackerDojoActivity.TAG, e.getMessage(), e);
+			}
+			Collections.sort(events);
+			return events;
+		}
+
+	}
+
+
+
+
+	private class UpdateEventsView extends AsyncTask<List<Event>, Void, List<Event>> 
+	{
 
 		private Activity activity;
 
-		public UpdateEventsView(Activity activity) {
+		public UpdateEventsView(Activity activity) 
+		{
 			this.activity = activity;
 		}
 
 		@Override
-		protected List<Event> doInBackground(List<Event>... params) {
+		protected List<Event> doInBackground(List<Event>... params) 
+		{
 			return params[0];
 		}
 
 		@Override
-		public void onPostExecute(List<Event> events) {
+		public void onPostExecute(List<Event> events) 
+		{
 			Log.i(HackerDojoActivity.TAG, "event size: " + events.size());
 			Calendar lastUpdated = Calendar.getInstance();
 
@@ -177,22 +260,28 @@ public class EventActivity extends HackerDojoActivity implements
 			SimpleDateFormat format = new SimpleDateFormat("EEEE, MM/dd/yyyy");
 			TextView emptyMessage = (TextView) findViewById(R.id.empty);
 			Map<Integer, Event> eventMapping = new HashMap<Integer, Event>();
-			if (events.size() == 0) {
+			if (events.size() == 0) 
+			{
 				emptyMessage.setText("Check your network connection.");
 				emptyMessage.setVisibility(View.VISIBLE);
 				lastUpdated.setTime(new Date(0));
-			} else {
+			}
+			else 
+			{
 				emptyMessage.setVisibility(View.GONE);
 			}
-			for (int i = 0; i < events.size(); i++) {
+			for (int i = 0; i < events.size(); i++) 
+			{
 				Event event = events.get(i);
-				if (event.getEndDate().before(new Date())) {
+				if (event.getEndDate().before(new Date())) 
+				{
 					continue;
 				}
 				if (event.getStartDate().getYear() > lastDate.getYear()
 						|| event.getStartDate().getMonth() > lastDate
-								.getMonth()
-						|| event.getStartDate().getDate() > lastDate.getDate()) {
+						.getMonth()
+						|| event.getStartDate().getDate() > lastDate.getDate()) 
+				{
 					startDates.add("");
 					endDates.add("");
 					Date date = event.getStartDate();
@@ -200,7 +289,9 @@ public class EventActivity extends HackerDojoActivity implements
 							&& date.getMonth() == today.getMonth()
 							&& date.getDate() == today.getDate()) {
 						titles.add("Today");
-					} else {
+					} 
+					else 
+					{
 						String dateString = format.format(date);
 						titles.add(dateString);
 					}
@@ -214,14 +305,17 @@ public class EventActivity extends HackerDojoActivity implements
 					startMeridiem = "pm";
 					startHour = startHour - 12;
 				}
-				if (endHour >= 12) {
+				if (endHour >= 12) 
+				{
 					endMeridiem = "pm";
 					endHour = endHour - 12;
 				}
-				if (startHour == 0) {
+				if (startHour == 0) 
+				{
 					startHour = 12;
 				}
-				if (endHour == 0) {
+				if (endHour == 0) 
+				{
 					endHour = 12;
 				}
 				startDates.add(String.format("%02d:%02d %s", startHour, event
@@ -234,44 +328,59 @@ public class EventActivity extends HackerDojoActivity implements
 
 			eventIndexes.set(eventMapping);
 
-			EventArrayAdapter adapter2 = new EventArrayAdapter(activity,
-					startDates, endDates, titles);
+			EventArrayAdapter adapter2 = new EventArrayAdapter(activity, startDates, endDates, titles);
 			setListAdapter(adapter2);
 
 			ListView lv = getListView();
-			lv.setOnItemClickListener(new OnItemClickListener() {
+			lv.setOnItemClickListener(new OnItemClickListener() 
+			{
 				@Override
-				public void onItemClick(AdapterView<?> parent, View view,
-						int position, long id) {
+				public void onItemClick(AdapterView<?> parent, View view, int position, long id) 
+				{
 					Map<Integer, Event> map = EventActivity.eventIndexes.get();
-					
-					if(map.containsKey(position)) {
+
+					if(map.containsKey(position)) 
+					{
+
+						event = map.get(position);	
 						
-						event = map.get(position);						
-						AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-						builder.setCancelable(true);
-						builder.setTitle(event.getTitle());
-						
+						String specificeventUrl = "http://events.hackerdojo.com/event/" + event.getId() + ".json";
+						new UpdateSpecificEventTask().execute(specificeventUrl);
+						JSONObject specificJSON = new JSONObject();
+
+						try 
+						{
+							event.setDescription(specificJSON.getString("details"));
+						} catch (JSONException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+
 						String formatted_location = event.getLocation();
 						formatted_location = formatted_location.replace("[", "");
 						formatted_location = formatted_location.replace("]", "");
-						
+
 						message = String.format(
 								"Starts:\n%s\n\nEnds:\n%s\n\nLocated at:\n%s\n\nHosted by:\n%s",
 								event.getStartDate(), event.getEndDate(),
 								formatted_location, event.getHost());
-						
-						if(event.getSize() > 0) {
+
+						if(event.getSize() > 0) 
+						{
 							message = message + "\n\nestimated size:\n" + event.getSize();
 						}
 						
+
+
+						message = message + "\n\nDescription:\n" + event.getDescription();
+
 						//Add calendar event and different View
-												
-						Intent SubEventIntent = new Intent(EventActivity.this, SubEventActivity.class);
+
+						Intent SubEventIntent = new Intent(EventActivity.this, EventSubActivity.class);
 						startActivity(SubEventIntent);
 					}
 				}
-				
+
 
 
 			});

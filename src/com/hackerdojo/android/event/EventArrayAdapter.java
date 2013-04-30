@@ -1,6 +1,10 @@
-package com.hackerdojo.android.infoapp;
+package com.hackerdojo.android.event;
 
 import java.util.List;
+
+import com.hackerdojo.android.infoapp.R;
+import com.hackerdojo.android.infoapp.R.id;
+import com.hackerdojo.android.infoapp.R.layout;
 
 import android.app.Activity;
 import android.view.LayoutInflater;

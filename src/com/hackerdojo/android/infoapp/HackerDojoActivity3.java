@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.hackerdojo.android.event.EventActivity;
 import com.hackerdojo.android.person.PersonCategoryActivity;
 
 public class HackerDojoActivity3 extends Activity {
@@ -103,7 +104,8 @@ public class HackerDojoActivity3 extends Activity {
 
 
 	/** Called when the activity is first created. */
-	public void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) 
+	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.maingrid);
 
@@ -111,7 +113,8 @@ public class HackerDojoActivity3 extends Activity {
 
 		MyAdapter adapter = new MyAdapter(this);
 		gridView.setAdapter(adapter);
-		gridView.setOnItemClickListener(new OnItemClickListener() {
+		gridView.setOnItemClickListener(new OnItemClickListener() 
+		{
 			
 
 		public void onItemClick(AdapterView<?> parent, View v, int position, long id)
@@ -140,35 +143,44 @@ public class HackerDojoActivity3 extends Activity {
 	});
 	}
 
-	private void openSwag(){
-		Intent intent = new Intent(
+	private void openSwag()
+	{
+		Intent intent = new Intent
+				(
 				Intent.ACTION_VIEW,
 				Uri.parse("http://www.hackerdojo.com/Swag")
 				);
 		startActivity(intent);
 	}
 
-	private void openPerson(){
+	private void openPerson()
+	{
 		Intent intent = new Intent(HackerDojoActivity3.this, PersonCategoryActivity.class);
 		startActivity(intent);
 	}
 
-	private void openEvents() {
+	private void openEvents() 
+	{
 		Intent intent = new Intent(HackerDojoActivity3.this, EventActivity.class);
 		startActivity(intent);
 	}
 
 
 
-	private void openNavigation() {
-		Intent intent = new Intent(
+	private void openNavigation() 
+	{
+		Intent intent = new Intent
+				(
 				Intent.ACTION_VIEW,
-				Uri.parse("google.navigation:q=599%20Fairchild%20Dr%2C%20Mountain%20View%2C%20ca"));
-		try {
+				Uri.parse("google.navigation:q=599%20Fairchild%20Dr%2C%20Mountain%20View%2C%20ca")
+				);
+		try 
+		{
 			startActivity(intent);
-		} catch(ActivityNotFoundException ex) {
-			AlertDialog.Builder builder = new AlertDialog.Builder(
-					this);
+		} 
+		catch(ActivityNotFoundException ex) 
+		{
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			builder.setCancelable(true);
 			builder.setTitle("Hacker Dojo");
 			String message = 
@@ -179,7 +191,8 @@ public class HackerDojoActivity3 extends Activity {
 		}
 	}
 	
-	private void openTheme() {
+	private void openTheme() 
+	{
 		Context context = getApplicationContext();
 		CharSequence text = "Theme Support Coming Soon!";
 		int duration = Toast.LENGTH_SHORT;

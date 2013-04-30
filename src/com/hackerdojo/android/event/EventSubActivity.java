@@ -1,24 +1,34 @@
-package com.hackerdojo.android.infoapp;
+package com.hackerdojo.android.event;
 
-import java.util.Calendar;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import com.hackerdojo.android.infoapp.R;
 import com.hackerdojo.android.infoapp.R.id;
 import com.hackerdojo.android.infoapp.R.layout;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class SubEventActivity extends Activity implements OnClickListener{
+public class EventSubActivity extends Activity implements OnClickListener{
 
 
-	protected void onCreate(Bundle savedInstanceState){
+	protected void onCreate(Bundle savedInstanceState)
+	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.subevent);
 
@@ -27,7 +37,8 @@ public class SubEventActivity extends Activity implements OnClickListener{
 	}
 
 	@Override
-	public void onResume() {
+	public void onResume() 
+	{
 		super.onResume();
 
 		Button calendarButton = (Button) findViewById(R.id.calendarButton);
@@ -37,7 +48,8 @@ public class SubEventActivity extends Activity implements OnClickListener{
 	}
 
 	@Override
-	public void onClick(View v) {
+	public void onClick(View v) 
+	{
 
 		switch(v.getId())
 		{
@@ -46,13 +58,13 @@ public class SubEventActivity extends Activity implements OnClickListener{
 		}
 	}
 
-	public void openCalendar(){
+	public void openCalendar()
+	{
 
 		
 		//need to find a way to display information properly...
 
 
-		Calendar cal = Calendar.getInstance();
 		Intent calIntent = new Intent(Intent.ACTION_EDIT);
 		calIntent.setType("vnd.android.cursor.item/event");
 		calIntent.putExtra("beginTime", EventActivity.event.getStartDate().getTime());
@@ -63,4 +75,7 @@ public class SubEventActivity extends Activity implements OnClickListener{
 
 		startActivity(calIntent);
 	}
+	
+
+	
 }
