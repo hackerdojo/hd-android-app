@@ -20,7 +20,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.hackerdojo.android.event.EventActivity;
 import com.hackerdojo.android.location.DojoPinpoint;
 
 public class HackerDojoActivity3 extends Activity
@@ -132,7 +131,7 @@ public class HackerDojoActivity3 extends Activity
 									{
 
 										case 0: // Event
-											openEvents();
+											//openEvents();
 											break;
 										case 1: // Person
 											//openPerson();
@@ -162,12 +161,6 @@ public class HackerDojoActivity3 extends Activity
 			}
 
 
-		private void openEvents()
-			{
-				Intent intent = new Intent(HackerDojoActivity3.this,
-						EventActivity.class);
-				startActivity(intent);
-			}
 
 		private void openNavigation()
 			{

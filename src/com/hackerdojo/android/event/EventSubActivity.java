@@ -33,7 +33,7 @@ public class EventSubActivity extends Activity implements OnClickListener{
 		setContentView(R.layout.subevent);
 
 		TextView messagetext = (TextView) findViewById(R.id.message);
-		messagetext.setText(EventActivity.message);
+//		messagetext.setText(EventActivity.message);
 	}
 
 	@Override
@@ -67,11 +67,11 @@ public class EventSubActivity extends Activity implements OnClickListener{
 
 		Intent calIntent = new Intent(Intent.ACTION_EDIT);
 		calIntent.setType("vnd.android.cursor.item/event");
-		calIntent.putExtra("beginTime", EventActivity.event.getStartDate().getTime());
-		calIntent.putExtra("allDay", false);
-		calIntent.putExtra("description", EventActivity.event.getLocation());
-		calIntent.putExtra("endTime", EventActivity.event.getEndDate().getTime());
-		calIntent.putExtra("title", EventActivity.event.getTitle());
+//		calIntent.putExtra("beginTime", EventActivity.event.getStartDate().getTime());
+//		calIntent.putExtra("allDay", false);
+//		calIntent.putExtra("description", EventActivity.event.getLocation());
+//		calIntent.putExtra("endTime", EventActivity.event.getEndDate().getTime());
+//		calIntent.putExtra("title", EventActivity.event.getTitle());
 
 		startActivity(calIntent);
 	}

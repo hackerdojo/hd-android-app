@@ -15,11 +15,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.app.Activity;
+import android.R.anim;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,7 +35,7 @@ import com.hackerdojo.android.infoapp.HackerDojoActivity;
 import com.hackerdojo.android.infoapp.JsonUpdateTask;
 import com.hackerdojo.android.infoapp.R;
 
-public class EventsFragment extends Fragment implements OnClickListener 
+public class EventsFragment extends ListFragment implements OnClickListener 
 {
 
 	private final static AtomicReference<List<Event>> events = new AtomicReference<List<Event>>(
@@ -62,10 +63,10 @@ public class EventsFragment extends Fragment implements OnClickListener
 		super.onStart();
 	}
 
-	public void onCreate(Bundle savedInstanceState) 
-	{
-		super.onCreate(savedInstanceState);
-	}
+//	public void onCreate(Bundle savedInstanceState) 
+//	{
+//		super.onCreate(savedInstanceState);
+//	}
 	
 	public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		view = inflater.inflate(R.layout.main, container, false);
@@ -337,62 +338,62 @@ public class EventsFragment extends Fragment implements OnClickListener
 
 			eventIndexes.set(eventMapping);
 
-//			EventArrayAdapter adapter2 = new EventArrayAdapter(activity, startDates, endDates, titles);
-//			setListAdapter(adapter2);
-//
-//			ListView lv = getListView();
-//			lv.setOnItemClickListener(new OnItemClickListener() 
-//			{
-//				@Override
-//				public void onItemClick(AdapterView<?> parent, View view, int position, long id) 
-//				{
-//					Map<Integer, Event> map = EventsFragment.eventIndexes.get();
-//
-//					if(map.containsKey(position)) 
-//					{
-//
-//						event = map.get(position);	
-//						
-//						String specificeventUrl = "http://events.hackerdojo.com/event/" + event.getId() + ".json";
-//						new UpdateSpecificEventTask().execute(specificeventUrl);
-//						JSONObject specificJSON = new JSONObject();
-//
-//						try 
-//						{
-//							event.setDescription(specificJSON.getString("details"));
-//						} catch (JSONException e) {
-//							// TODO Auto-generated catch block
-//							e.printStackTrace();
-//						}
-//
-//						String formatted_location = event.getLocation();
-//						formatted_location = formatted_location.replace("[", "");
-//						formatted_location = formatted_location.replace("]", "");
-//
-//						message = String.format(
-//								"Starts:\n%s\n\nEnds:\n%s\n\nLocated at:\n%s\n\nHosted by:\n%s",
-//								event.getStartDate(), event.getEndDate(),
-//								formatted_location, event.getHost());
-//
-//						if(event.getSize() > 0) 
-//						{
-//							message = message + "\n\nestimated size:\n" + event.getSize();
-//						}
-//						
-//
-//
-//						message = message + "\n\nDescription:\n" + event.getDescription();
-//
-//						//Add calendar event and different View
-//
-//						Intent SubEventIntent = new Intent(getActivity(), EventSubActivity.class);
-//						startActivity(SubEventIntent);
-//					}
-//				}
-//
-//
-//
-//			});
+			EventArrayAdapter adapter2 = new EventArrayAdapter(getActivity(), startDates, endDates, titles);
+			setListAdapter(adapter2);
+
+			ListView lv = getListView();
+			lv.setOnItemClickListener(new OnItemClickListener() 
+			{
+				@Override
+				public void onItemClick(AdapterView<?> parent, View view, int position, long id) 
+				{
+					Map<Integer, Event> map = EventsFragment.eventIndexes.get();
+
+					if(map.containsKey(position)) 
+					{
+
+						event = map.get(position);	
+						
+						String specificeventUrl = "http://events.hackerdojo.com/event/" + event.getId() + ".json";
+						new UpdateSpecificEventTask().execute(specificeventUrl);
+						JSONObject specificJSON = new JSONObject();
+
+						try 
+						{
+							event.setDescription(specificJSON.getString("details"));
+						} catch (JSONException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+
+						String formatted_location = event.getLocation();
+						formatted_location = formatted_location.replace("[", "");
+						formatted_location = formatted_location.replace("]", "");
+
+						message = String.format(
+								"Starts:\n%s\n\nEnds:\n%s\n\nLocated at:\n%s\n\nHosted by:\n%s",
+								event.getStartDate(), event.getEndDate(),
+								formatted_location, event.getHost());
+
+						if(event.getSize() > 0) 
+						{
+							message = message + "\n\nestimated size:\n" + event.getSize();
+						}
+						
+
+
+						message = message + "\n\nDescription:\n" + event.getDescription();
+
+						//Add calendar event and different View
+
+						Intent SubEventIntent = new Intent(getActivity(), EventSubActivity.class);
+						startActivity(SubEventIntent);
+					}
+				}
+
+
+
+			});
 
 			TextView emptyText = (TextView) view.findViewById(R.id.empty);
 			// update calendar
