@@ -13,5 +13,6 @@
     <string name="staff_button_label">Staff on Site</string>
     <string name="event_button_label">Events</string>
     <string name="title_activity_person">PersonActivity</string>
+    <string name="title_activity_hacker_dojo_main">HackerDojoMainActivity</string>
 
 </resources>

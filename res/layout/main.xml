@@ -6,14 +6,6 @@
     android:layout_height="fill_parent"
     android:background="@android:color/white"
     >
-
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="0dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/hacker_dojo_logo_transparent_2" />
 	    
 	<ListView 
 		android:id="@android:id/list"

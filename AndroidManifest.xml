@@ -4,7 +4,7 @@
     android:versionCode="1"
     android:versionName="1.0.0" >
 
-    <uses-sdk android:minSdkVersion="3" />
+    <uses-sdk android:minSdkVersion="9" />
 
     <uses-permission android:name="android.permission.INTERNET" >
     </uses-permission>
@@ -12,43 +12,17 @@
     <application
         android:icon="@drawable/icon"
         android:label="@string/app_name" >
+        <activity android:name="com.hackerdojo.android.event.EventActivity" />
+        <activity android:name="com.hackerdojo.android.event.EventSubActivity" />
+        <activity android:name="com.hackerdojo.android.location.DojoPinpoint" />
+        <activity android:name="com.hackerdojo.android.infoapp.HackerDojoActivity3" />
         <activity
-            android:name="com.hackerdojo.android.event.EventActivity"
-            android:label="@string/app_name"
-            android:theme="@android:style/Theme.NoTitleBar" >
-        </activity>
-        <activity
-            android:name="com.hackerdojo.android.person.StaffActivity"
-            android:theme="@android:style/Theme.NoTitleBar" />
-        <activity
-            android:name="com.hackerdojo.android.event.EventSubActivity"
-            android:label="@string/title_activity_sub_event"
-            android:theme="@android:style/Theme.NoTitleBar" >
-          
-        </activity>
-        
-                <activity
-            android:name="com.hackerdojo.android.person.PersonCategoryActivity"
-            android:theme="@android:style/Theme.NoTitleBar" />
-        
-        
-        
-        <activity
-            android:name="com.hackerdojo.android.infoapp.HackerDojoActivity3"
-            android:theme="@android:style/Theme.NoTitleBar" >
+            android:name="com.hackerdojo.android.infoapp.HackerDojoMainActivity"
+            android:theme="@style/Theme.AppCompat.Light" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name="com.hackerdojo.android.person.PersonActivity"
-            android:label="@string/title_activity_person"
-            android:theme="@android:style/Theme.NoTitleBar" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.hackerdojo.android.infoapp.HackerDojoActivity2" />
         </activity>
     </application>
 
