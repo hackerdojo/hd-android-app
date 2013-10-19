@@ -69,7 +69,7 @@ public class EventsFragment extends ListFragment implements OnClickListener
 //	}
 	
 	public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		view = inflater.inflate(R.layout.main, container, false);
+		view = inflater.inflate(R.layout.fragment_events, container, false);
 		return view;
 	}
 

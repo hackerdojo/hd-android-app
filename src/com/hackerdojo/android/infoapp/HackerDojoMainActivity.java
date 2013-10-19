@@ -51,9 +51,8 @@ public class HackerDojoMainActivity extends ActionBarActivity
 			
 			mTabsAdapter.addTab(mEventsTab, EventsFragment.class, null);
 			mTabsAdapter.addTab(mLocationTab, LocationMenuFragment.class, null);
-			mTabsAdapter.addTab(mPurchaseTab, EventsFragment.class, null);
+//			mTabsAdapter.addTab(mPurchaseTab, EventsFragment.class, null);
 			
-
 		}
 
 	@Override

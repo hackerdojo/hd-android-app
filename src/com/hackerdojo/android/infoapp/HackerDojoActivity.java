@@ -17,7 +17,7 @@ public abstract class HackerDojoActivity extends ListFragment {
 	/** Called when the activity is first created. */
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.main, container, false);
+		View view = inflater.inflate(R.layout.fragment_events, container, false);
 		return view;
 	}
 

@@ -80,8 +80,8 @@ public class HackerDojoActivity3 extends Activity
 						if (convertView == null)
 							{
 								grid = new View(context);
-								grid = layoutInflater.inflate(
-										R.layout.gridlayout, null);
+//								grid = layoutInflater.inflate(
+//										R.layout.gridlayout, null);
 							}
 						else
 							{
@@ -91,9 +91,9 @@ public class HackerDojoActivity3 extends Activity
 						ImageView imageView = (ImageView) grid
 								.findViewById(R.id.image);
 						imageView.setImageResource(mThumbsIds[position]);
-						TextView textView = (TextView) grid
-								.findViewById(R.id.text);
-						textView.setText(StringIds[position]);
+//						TextView textView = (TextView) grid
+//								.findViewById(R.id.text);
+//						textView.setText(StringIds[position]);
 
 						return grid;
 					}
