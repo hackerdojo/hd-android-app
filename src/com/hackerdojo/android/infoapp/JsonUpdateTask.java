@@ -24,7 +24,7 @@ public abstract class JsonUpdateTask<T> extends AsyncTask<String, Long, List<T>>
         StringBuffer sb = new StringBuffer();
         try 
         {
-            Log.i(HackerDojoActivity.TAG, "FETCHING: " + url);
+            Log.i(HackerDojoMainActivity.TAG, "FETCHING: " + url);
             HttpResponse response = client.execute(new HttpGet(url));
             HttpEntity entity = response.getEntity();
             char[] buf = new char[1024];
@@ -40,9 +40,9 @@ public abstract class JsonUpdateTask<T> extends AsyncTask<String, Long, List<T>>
                 }
             }
         } catch (ClientProtocolException e) {
-            Log.e(HackerDojoActivity.TAG, e.getMessage(), e);
+            Log.e(HackerDojoMainActivity.TAG, e.getMessage(), e);
         } catch (IOException e) {
-            Log.e(HackerDojoActivity.TAG, e.getMessage(), e);
+            Log.e(HackerDojoMainActivity.TAG, e.getMessage(), e);
         }
 		return sb.toString();
 	}

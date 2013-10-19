@@ -16,6 +16,7 @@ import android.support.v7.app.ActionBarActivity;
 
 import com.hackerdojo.android.event.EventsFragment;
 import com.hackerdojo.android.location.LocationMenuFragment;
+import com.hackerdojo.android.shopping.PurchaseSwagFragment;
 
 public class HackerDojoMainActivity extends ActionBarActivity
 {
@@ -26,6 +27,8 @@ public class HackerDojoMainActivity extends ActionBarActivity
 	private Tab mLocationTab;
 	private Tab mPurchaseTab;
 	
+	public static final String TAG = "HackerDojoMainActivity";
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -33,7 +36,7 @@ public class HackerDojoMainActivity extends ActionBarActivity
 			// TODO Auto-generated method stub
 			super.onCreate(savedInstanceState);
 			
-			setContentView(R.layout.hd_main);
+			setContentView(R.layout.main);
 
 			mViewPager = (ViewPager) findViewById(R.id.pager);
 			// mViewPager.setAdapter(mSectionsPagerAdapter);
@@ -47,11 +50,11 @@ public class HackerDojoMainActivity extends ActionBarActivity
 			
 			mLocationTab = bar.newTab().setText("Location");
 			
-			mPurchaseTab = bar.newTab().setText("Purchase");
+			mPurchaseTab = bar.newTab().setText("Shop");
 			
 			mTabsAdapter.addTab(mEventsTab, EventsFragment.class, null);
 			mTabsAdapter.addTab(mLocationTab, LocationMenuFragment.class, null);
-//			mTabsAdapter.addTab(mPurchaseTab, EventsFragment.class, null);
+			mTabsAdapter.addTab(mPurchaseTab, PurchaseSwagFragment.class, null);
 			
 		}
 

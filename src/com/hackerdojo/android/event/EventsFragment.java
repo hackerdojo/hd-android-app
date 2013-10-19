@@ -15,7 +15,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.R.anim;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -31,11 +30,11 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.hackerdojo.android.infoapp.HackerDojoActivity;
+import com.hackerdojo.android.infoapp.HackerDojoMainActivity;
 import com.hackerdojo.android.infoapp.JsonUpdateTask;
 import com.hackerdojo.android.infoapp.R;
 
-public class EventsFragment extends ListFragment implements OnClickListener 
+public class EventsFragment extends ListFragment
 {
 
 	private final static AtomicReference<List<Event>> events = new AtomicReference<List<Event>>(
@@ -51,7 +50,7 @@ public class EventsFragment extends ListFragment implements OnClickListener
 		lastChecked.set(cal);
 	}
 
-	public static String message;
+	private String message;
 	public static Event event;
 	
 	private View view;
@@ -96,12 +95,6 @@ public class EventsFragment extends ListFragment implements OnClickListener
 
 	private class UpdateEventsTask extends JsonUpdateTask<Event> 
 	{
-//		private Activity activity;
-//
-//		public UpdateEventsTask(Activity activity) 
-//		{
-//			this.activity = activity;
-//		}
 		
 		private Fragment fragment;
 
@@ -153,11 +146,11 @@ public class EventsFragment extends ListFragment implements OnClickListener
 			} 
 			catch (JSONException e) 
 			{
-				Log.e(HackerDojoActivity.TAG, e.getMessage(), e);
+				Log.e(HackerDojoMainActivity.TAG, e.getMessage(), e);
 			} 
 			catch (ParseException e) 
 			{
-				Log.e(HackerDojoActivity.TAG, e.getMessage(), e);
+				Log.e(HackerDojoMainActivity.TAG, e.getMessage(), e);
 			}
 			Collections.sort(events);
 			return events;
@@ -182,11 +175,8 @@ public class EventsFragment extends ListFragment implements OnClickListener
 			ArrayList<Event> events = new ArrayList<Event>();
 			try 
 			{
-				JSONArray json = new JSONArray(string);
-				for (int i = 0; i < json.length(); i++) 
-				{
+				JSONObject jsonObject = new JSONObject(string);
 					Event event = new Event();
-					JSONObject jsonObject = json.getJSONObject(i);
 					if (		jsonObject.has("status")
 							&& jsonObject.has("start_time")
 							&& jsonObject.has("end_time")
@@ -214,15 +204,14 @@ public class EventsFragment extends ListFragment implements OnClickListener
 							events.add(event);														
 						}
 					}
-				}
 			} 
 			catch (JSONException e) 
 			{
-				Log.e(HackerDojoActivity.TAG, e.getMessage(), e);
+				Log.e(HackerDojoMainActivity.TAG, e.getMessage(), e);
 			}
 			catch (ParseException e) 
 			{
-				Log.e(HackerDojoActivity.TAG, e.getMessage(), e);
+				Log.e(HackerDojoMainActivity.TAG, e.getMessage(), e);
 			}
 			Collections.sort(events);
 			return events;
@@ -236,13 +225,6 @@ public class EventsFragment extends ListFragment implements OnClickListener
 	private class UpdateEventsView extends AsyncTask<List<Event>, Void, List<Event>> 
 	{
 
-//		private Activity activity;
-//
-//		public UpdateEventsView(Activity activity) 
-//		{
-//			this.activity = activity;
-//		}
-		
 		private Fragment fragment;
 
 		public UpdateEventsView(Fragment fragment) 
@@ -259,7 +241,7 @@ public class EventsFragment extends ListFragment implements OnClickListener
 		@Override
 		public void onPostExecute(List<Event> events) 
 		{
-			Log.i(HackerDojoActivity.TAG, "event size: " + events.size());
+			Log.i(HackerDojoMainActivity.TAG, "event size: " + events.size());
 			Calendar lastUpdated = Calendar.getInstance();
 
 			ArrayList<String> startDates = new ArrayList<String>();
@@ -357,14 +339,8 @@ public class EventsFragment extends ListFragment implements OnClickListener
 						String specificeventUrl = "http://events.hackerdojo.com/event/" + event.getId() + ".json";
 						new UpdateSpecificEventTask().execute(specificeventUrl);
 						JSONObject specificJSON = new JSONObject();
-
-						try 
-						{
-							event.setDescription(specificJSON.getString("details"));
-						} catch (JSONException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
+						
+						Log.d("specificJSON", specificJSON.toString());
 
 						String formatted_location = event.getLocation();
 						formatted_location = formatted_location.replace("[", "");
@@ -382,12 +358,15 @@ public class EventsFragment extends ListFragment implements OnClickListener
 						
 
 
-						message = message + "\n\nDescription:\n" + event.getDescription();
+						//message = message + "\n\nDescription:\n" + event.getDescription();
 
-						//Add calendar event and different View
 
-						Intent SubEventIntent = new Intent(getActivity(), EventSubActivity.class);
-						startActivity(SubEventIntent);
+						Intent intent = new Intent(getActivity(), EventDetails.class);
+						
+						intent.putExtra("message", message);
+						intent.putExtra("details", event.getDescription());
+						
+						startActivity(intent);
 					}
 				}
 
@@ -412,12 +391,4 @@ public class EventsFragment extends ListFragment implements OnClickListener
 	}
 
 
-
-
-	@Override
-	public void onClick(View arg0)
-		{
-			// TODO Auto-generated method stub
-			
-		}
 }
