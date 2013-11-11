@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
@@ -15,8 +13,9 @@ import android.support.v7.app.ActionBar.Tab;
 import android.support.v7.app.ActionBarActivity;
 
 import com.hackerdojo.android.event.EventsFragment;
+import com.hackerdojo.android.event.NewEventsFragment;
 import com.hackerdojo.android.location.LocationMenuFragment;
-import com.hackerdojo.android.shopping.PurchaseSwagFragment;
+import com.hackerdojo.android.shopping.ShoppingMenuFragment;
 
 public class HackerDojoMainActivity extends ActionBarActivity
 {
@@ -25,7 +24,7 @@ public class HackerDojoMainActivity extends ActionBarActivity
 	
 	private Tab mEventsTab;
 	private Tab mLocationTab;
-	private Tab mPurchaseTab;
+	private Tab mShopTab;
 	
 	public static final String TAG = "HackerDojoMainActivity";
 	
@@ -39,7 +38,6 @@ public class HackerDojoMainActivity extends ActionBarActivity
 			setContentView(R.layout.main);
 
 			mViewPager = (ViewPager) findViewById(R.id.pager);
-			// mViewPager.setAdapter(mSectionsPagerAdapter);
 			
 			ActionBar bar = getSupportActionBar();
 			bar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -50,11 +48,11 @@ public class HackerDojoMainActivity extends ActionBarActivity
 			
 			mLocationTab = bar.newTab().setText("Location");
 			
-			mPurchaseTab = bar.newTab().setText("Shop");
+			mShopTab = bar.newTab().setText("Shop");
 			
-			mTabsAdapter.addTab(mEventsTab, EventsFragment.class, null);
+			mTabsAdapter.addTab(mEventsTab, NewEventsFragment.class, null);
 			mTabsAdapter.addTab(mLocationTab, LocationMenuFragment.class, null);
-			mTabsAdapter.addTab(mPurchaseTab, PurchaseSwagFragment.class, null);
+			mTabsAdapter.addTab(mShopTab, ShoppingMenuFragment.class, null);
 			
 		}
 

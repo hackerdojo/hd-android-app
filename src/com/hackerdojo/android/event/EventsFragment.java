@@ -165,59 +165,59 @@ public class EventsFragment extends ListFragment
 	}
 
 
-	private class UpdateSpecificEventTask extends JsonUpdateTask<Event> 
-	{
-		@Override
-		public List<Event> transform(String string) {
-			if (string == null || string.trim().length() == 0) {
-				return new ArrayList<Event>();
-			}
-			ArrayList<Event> events = new ArrayList<Event>();
-			try 
-			{
-				JSONObject jsonObject = new JSONObject(string);
-					Event event = new Event();
-					if (		jsonObject.has("status")
-							&& jsonObject.has("start_time")
-							&& jsonObject.has("end_time")
-							&& jsonObject.has("name")
-							&& jsonObject.has("member")
-							&& jsonObject.has("rooms")
-							&& jsonObject.has("id")) 
-					{
-						if (jsonObject.getString("status").equals("approved")) 
-						{
-							SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-							Date startDate = format.parse(jsonObject.getString("start_time")); // hardcode date for parsing
-							Date endDate = format.parse(jsonObject.getString("end_time"));
-							event.setStartDate(startDate);
-							event.setEndDate(endDate);
-							event.setTitle(jsonObject.getString("name"));
-
-							event.setLocation(jsonObject.getString("rooms"));
-							event.setHost(jsonObject.getString("member"));
-							event.setId(jsonObject.getInt("id"));
-							if(jsonObject.has("estimated_size")) 
-							{
-								event.setSize(jsonObject.getInt("estimated_size"));
-							}
-							events.add(event);														
-						}
-					}
-			} 
-			catch (JSONException e) 
-			{
-				Log.e(HackerDojoMainActivity.TAG, e.getMessage(), e);
-			}
-			catch (ParseException e) 
-			{
-				Log.e(HackerDojoMainActivity.TAG, e.getMessage(), e);
-			}
-			Collections.sort(events);
-			return events;
-		}
-
-	}
+//	private class UpdateSpecificEventTask extends JsonUpdateTask<Event> 
+//	{
+//		@Override
+//		public List<Event> transform(String string) {
+//			if (string == null || string.trim().length() == 0) {
+//				return new ArrayList<Event>();
+//			}
+//			ArrayList<Event> events = new ArrayList<Event>();
+//			try 
+//			{
+//				JSONObject jsonObject = new JSONObject(string);
+//					Event event = new Event();
+//					if (		jsonObject.has("status")
+//							&& jsonObject.has("start_time")
+//							&& jsonObject.has("end_time")
+//							&& jsonObject.has("name")
+//							&& jsonObject.has("member")
+//							&& jsonObject.has("rooms")
+//							&& jsonObject.has("id")) 
+//					{
+//						if (jsonObject.getString("status").equals("approved")) 
+//						{
+//							SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+//							Date startDate = format.parse(jsonObject.getString("start_time")); // hardcode date for parsing
+//							Date endDate = format.parse(jsonObject.getString("end_time"));
+//							event.setStartDate(startDate);
+//							event.setEndDate(endDate);
+//							event.setTitle(jsonObject.getString("name"));
+//
+//							event.setLocation(jsonObject.getString("rooms"));
+//							event.setHost(jsonObject.getString("member"));
+//							event.setId(jsonObject.getInt("id"));
+//							if(jsonObject.has("estimated_size")) 
+//							{
+//								event.setSize(jsonObject.getInt("estimated_size"));
+//							}
+//							events.add(event);														
+//						}
+//					}
+//			} 
+//			catch (JSONException e) 
+//			{
+//				Log.e(HackerDojoMainActivity.TAG, e.getMessage(), e);
+//			}
+//			catch (ParseException e) 
+//			{
+//				Log.e(HackerDojoMainActivity.TAG, e.getMessage(), e);
+//			}
+//			Collections.sort(events);
+//			return events;
+//		}
+//
+//	}
 
 
 
@@ -337,7 +337,7 @@ public class EventsFragment extends ListFragment
 						event = map.get(position);	
 						
 						String specificeventUrl = "http://events.hackerdojo.com/event/" + event.getId() + ".json";
-						new UpdateSpecificEventTask().execute(specificeventUrl);
+						//new UpdateSpecificEventTask().execute(specificeventUrl);
 						JSONObject specificJSON = new JSONObject();
 						
 						Log.d("specificJSON", specificJSON.toString());
@@ -361,7 +361,7 @@ public class EventsFragment extends ListFragment
 						//message = message + "\n\nDescription:\n" + event.getDescription();
 
 
-						Intent intent = new Intent(getActivity(), EventDetails.class);
+						Intent intent = new Intent(getActivity(), EventDetailsActivity.class);
 						
 						intent.putExtra("message", message);
 						intent.putExtra("details", event.getDescription());

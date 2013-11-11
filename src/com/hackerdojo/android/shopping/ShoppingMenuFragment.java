@@ -1,4 +1,4 @@
-package com.hackerdojo.android.location;
+package com.hackerdojo.android.shopping;
 
 import com.hackerdojo.android.infoapp.R;
 
@@ -20,12 +20,12 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class LocationMenuFragment extends Fragment
+public class ShoppingMenuFragment extends Fragment
 {
 
 	private ListView location_list;
-	private String[] titles = {"Navigate to the Dojo"};
-	private int[] images = {R.drawable.hd_nav_graphic};
+	private String[] titles = {"Purchase Swag", "Donate"};
+	private int[] images = {R.drawable.swag, R.drawable.donate};
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,7 +48,10 @@ public class LocationMenuFragment extends Fragment
 							// TODO Auto-generated method stub
 							switch (position) {
 								case 0:
-									openNavigation();
+									openSwag();
+									break;
+								case 1:
+									openGive();
 									break;
 							}
 						}
@@ -122,25 +125,20 @@ public class LocationMenuFragment extends Fragment
 
 	}
 
-	private void openNavigation()
+	private void openSwag()
 		{
-			Intent intent = new Intent(
-					Intent.ACTION_VIEW,
-					Uri.parse("google.navigation:q=599%20Fairchild%20Dr%2C%20Mountain%20View%2C%20ca"));
-			try
-				{
-					startActivity(intent);
-				}
-			catch (ActivityNotFoundException ex)
-				{
-					AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-					builder.setCancelable(true);
-					builder.setTitle("Hacker Dojo");
-					String message = "599 Fairchild Dr\n"
-							+ "Mountain View, CA 94041";
-					builder.setMessage(message);
-					builder.create().show();
-				}
+			String url = "http://www.hackerdojo.com/Swag";
+			Intent i = new Intent(Intent.ACTION_VIEW);
+			i.setData(Uri.parse(url));
+			startActivity(i);
+		}
+	
+	private void openGive()
+		{
+			String url = "http://www.hackerdojo.com/Give";
+			Intent i = new Intent(Intent.ACTION_VIEW);
+			i.setData(Uri.parse(url));
+			startActivity(i);
 		}
 
 

@@ -30,9 +30,9 @@ public class EventArrayAdapter extends ArrayAdapter<String> {
 	public View getView(int position, View view, ViewGroup viewGroup) {
 		LayoutInflater inflator = context.getLayoutInflater();
 		View newView = inflator.inflate(R.layout.event, null, true);
-		TextView textView1 = (TextView) newView.findViewById(R.id.textView1);
-		TextView textView2 = (TextView) newView.findViewById(R.id.textView2);
-		TextView textView3 = (TextView) newView.findViewById(R.id.textView3);
+		TextView textView1 = (TextView) newView.findViewById(R.id.event_start_time_tv);
+		TextView textView2 = (TextView) newView.findViewById(R.id.event_end_time_tv);
+		TextView textView3 = (TextView) newView.findViewById(R.id.event_title_tv);
 		textView1.setText(startTimes.get(position));
 		textView2.setText(endTimes.get(position));
 		textView3.setText(titles.get(position));

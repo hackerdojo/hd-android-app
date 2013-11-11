@@ -9,9 +9,9 @@
     <ImageView 
         android:src="@drawable/hd_nav_graphic"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="150dp"
         android:scaleType="centerCrop"
-        android:id="@+id/location_menu_iv"
+        android:id="@+id/menu_card_iv"
         />
     
     <TextView 
@@ -19,9 +19,10 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:text="Navigate To The Dojo"
-        android:id="@+id/location_menu_tv"
+        android:id="@+id/menu_card_tv"
         android:textSize="20sp"
         android:textColor="@android:color/black"
+        android:padding="5dp"
         />
     
 

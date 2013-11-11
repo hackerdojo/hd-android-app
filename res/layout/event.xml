@@ -8,29 +8,29 @@
      >
 
     <LinearLayout
-        android:id="@+id/linearLayout1"
+        android:id="@+id/event_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="vertical" >
 
         <TextView
-            android:id="@+id/textView1"
+            android:id="@+id/event_start_time_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#005500" >
+            android:textColor="@color/event_green" >
         </TextView>
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/event_end_time_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#990000" >
+            android:textColor="@color/event_red" >
         </TextView>
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/event_title_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
